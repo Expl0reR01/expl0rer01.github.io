@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[YOUR NAME] — Data & Marketing Analyst Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181F;
+    --paper:#F5F6F4;
+    --slate:#3E5C76;
+    --signal:#E3B23C;
+    --line-muted:#B9C4C9;
+    --card:#FFFFFF;
+    --max:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible, .btn:focus-visible{
+    outline:3px solid var(--signal);
+    outline-offset:2px;
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,246,244,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-muted);
+  }
+  nav .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    height:64px;
+  }
+  .brand{font-family:'Space Grotesk'; font-weight:700; font-size:1.1rem;}
+  .navlinks{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .navlinks a{
+    text-decoration:none; font-size:0.95rem; font-weight:500;
+    position:relative; padding-bottom:4px;
+  }
+  .navlinks a::after{
+    content:"";
+    position:absolute; left:0; bottom:0;
+    width:0%; height:2px; background:var(--signal);
+    transition:width 0.25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .navtoggle{display:none; background:none; border:none; font-size:1.5rem; cursor:pointer;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:90px 0 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono'; font-size:0.8rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--slate); margin-bottom:14px; display:block;
+  }
+  .hero h1{font-size:clamp(2.2rem, 4vw, 3.4rem); line-height:1.08;}
+  .hero h1 span{color:var(--slate);}
+  .hero p.lede{
+    margin-top:20px; font-size:1.15rem; max-width:520px; color:#2b333c;
+  }
+  .cta-row{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:13px 22px; border-radius:2px;
+    text-decoration:none; font-weight:600; font-size:0.95rem;
+    border:1.5px solid var(--ink); transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{background:var(--slate); border-color:var(--slate); transform:translateY(-2px);}
+  .btn-ghost{background:transparent; color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink); color:var(--paper); transform:translateY(-2px);}
+
+  /* signature lift-curve graphic */
+  .lift-graphic{width:100%; height:auto;}
+  .lift-caption{
+    font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--slate);
+    margin-top:8px; text-align:right;
+  }
+
+  /* section divider using the signature curve tick */
+  .divider{
+    display:flex; align-items:center; gap:14px; margin:0 0 40px;
+  }
+  .divider svg{flex:0 0 auto;}
+  .divider .label{
+    font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--slate); white-space:nowrap;
+  }
+  .divider .rule{flex:1; height:1px; background:var(--line-muted);}
+
+  section{padding:64px 0;}
+  section.alt{background:#EFEFEA;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .skill-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;}
+  .tag{
+    font-family:'IBM Plex Mono'; font-size:0.82rem;
+    border:1px solid var(--slate); color:var(--slate);
+    padding:6px 12px; border-radius:2px;
+  }
+
+  /* ---------- FEATURED PROJECT ---------- */
+  .project-card{
+    background:var(--card); border:1px solid var(--line-muted);
+    border-radius:4px; overflow:hidden;
+  }
+  .project-head{
+    padding:32px 32px 0; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;
+  }
+  .project-head h3{font-size:1.6rem;}
+  .status-pill{
+    font-family:'IBM Plex Mono'; font-size:0.75rem; background:var(--signal);
+    color:var(--ink); padding:5px 10px; border-radius:20px; white-space:nowrap;
+  }
+  .project-body{padding:20px 32px 32px;}
+  .metric-row{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:24px 0;
+  }
+  .metric{
+    border-left:2px solid var(--signal); padding-left:14px;
+  }
+  .metric .num{font-family:'Space Grotesk'; font-size:1.7rem; font-weight:700;}
+  .metric .lbl{font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--slate);}
+  .chart-strip{
+    display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:16px; margin:28px 0;
+  }
+  .chart-strip img{width:100%; border:1px solid var(--line-muted); border-radius:2px; display:block;}
+  .chart-cap{font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--slate); margin-top:6px;}
+  .stack-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+  .project-links{display:flex; gap:16px; margin-top:24px;}
+  .project-links a{
+    font-weight:600; font-size:0.9rem; text-decoration:none;
+    border-bottom:2px solid var(--signal);
+  }
+
+  /* ---------- OTHER PROJECTS ---------- */
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .mini-card{
+    background:var(--card); border:1px dashed var(--line-muted); border-radius:4px;
+    padding:24px; min-height:180px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .mini-card h4{font-family:'Space Grotesk'; font-size:1.05rem; margin-bottom:8px;}
+  .mini-card p{font-size:0.9rem; color:#4a535c; margin:0;}
+  .mini-card .soon{font-family:'IBM Plex Mono'; font-size:0.72rem; color:var(--slate); margin-top:16px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-box{
+    text-align:center; padding:60px 24px;
+  }
+  .contact-box h2{font-size:clamp(1.8rem,3vw,2.6rem);}
+  .contact-links{
+    display:flex; justify-content:center; gap:28px; margin-top:28px; flex-wrap:wrap;
+  }
+  .contact-links a{
+    font-family:'IBM Plex Mono'; text-decoration:none; font-size:0.95rem;
+    border-bottom:1px solid var(--ink); padding-bottom:2px;
+  }
+  footer{
+    text-align:center; padding:24px; font-family:'IBM Plex Mono';
+    font-size:0.75rem; color:var(--slate);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:800px){
+    .hero-grid, .about-grid{grid-template-columns:1fr;}
+    .chart-strip{grid-template-columns:1fr;}
+    .grid-3{grid-template-columns:1fr;}
+    .metric-row{grid-template-columns:1fr;}
+    .navlinks{
+      position:absolute; top:64px; left:0; right:0; background:var(--paper);
+      flex-direction:column; padding:16px 24px; gap:16px;
+      border-bottom:1px solid var(--line-muted);
+      display:none;
+    }
+    .navlinks.open{display:flex;}
+    .navtoggle{display:block;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">[YOUR NAME]</div>
+    <button class="navtoggle" aria-label="Toggle menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">☰</button>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#featured">Featured Project</a></li>
+      <li><a href="#projects">More Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Data Analyst · Marketing Analytics</span>
+      <h1>I turn campaign<br>data into <span>decisions.</span></h1>
+      <p class="lede">
+        [YOUR NAME] — a data analyst who finds where the signal beats the noise:
+        which customers to call, which channel to use, and how much it's worth.
+        SQL, Python, and a bias toward quantified recommendations.
+      </p>
+      <div class="cta-row">
+        <a href="#featured" class="btn btn-primary">See the flagship project</a>
+        <a href="[YOUR_RESUME_LINK]" class="btn btn-ghost">Download résumé</a>
+      </div>
+    </div>
+    <div>
+      <svg class="lift-graphic" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A line showing model-based targeting capturing conversions far faster than random targeting">
+        <line x1="30" y1="260" x2="30" y2="20" stroke="#B9C4C9" stroke-width="1"/>
+        <line x1="30" y1="260" x2="400" y2="260" stroke="#B9C4C9" stroke-width="1"/>
+        <line x1="30" y1="260" x2="400" y2="30" stroke="#B9C4C9" stroke-width="1.5" stroke-dasharray="4 5"/>
+        <path d="M30,260 C90,90 140,55 400,30" fill="none" stroke="#E3B23C" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="400" cy="30" r="5" fill="#12181F"/>
+        <text x="230" y="70" font-family="IBM Plex Mono" font-size="12" fill="#3E5C76">model targeting</text>
+        <text x="230" y="215" font-family="IBM Plex Mono" font-size="12" fill="#B9C4C9">random targeting</text>
+        <text x="10" y="280" font-family="IBM Plex Mono" font-size="11" fill="#3E5C76">customers contacted →</text>
+      </svg>
+      <p class="lift-caption">from the term-deposit targeting project, below ↓</p>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="divider">
+      <svg width="26" height="14" viewBox="0 0 26 14"><path d="M1,13 C8,3 14,3 25,1" fill="none" stroke="#E3B23C" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="label">About</span>
+      <span class="rule"></span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <h2>From foundation course to first analyst role.</h2>
+        <p style="margin-top:16px; color:#2b333c;">
+          [Write 3–4 sentences here: your background, what draws you to marketing/data
+          analytics, and what kind of role you're looking for. Keep it specific —
+          mention the tools you actually used, not just "passionate about data."]
+        </p>
+      </div>
+      <div>
+        <p class="mono" style="color:var(--slate); font-size:0.85rem;">TOOLKIT</p>
+        <div class="skill-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">Python</span>
+          <span class="tag">pandas</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">matplotlib / seaborn</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">A/B Testing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="featured">
+  <div class="wrap">
+    <div class="divider">
+      <svg width="26" height="14" viewBox="0 0 26 14"><path d="M1,13 C8,3 14,3 25,1" fill="none" stroke="#E3B23C" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="label">Featured Project</span>
+      <span class="rule"></span>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <div>
+          <h3>Predicting Term Deposit Subscription &amp; Targeting Strategy</h3>
+          <p class="mono" style="color:var(--slate); font-size:0.85rem; margin-top:6px;">
+            SQL · Python · scikit-learn · Bank marketing campaign data (41,188 clients)
+          </p>
+        </div>
+        <span class="status-pill">CASE STUDY</span>
+      </div>
+
+      <div class="project-body">
+        <p>
+          A Portuguese bank was calling every client in its database to sell term deposits —
+          an 11.3% response rate meant most calls were wasted effort. I built a model to rank
+          customers by likelihood to subscribe, then quantified exactly how much cost that
+          saves versus calling everyone.
+        </p>
+
+        <div class="metric-row">
+          <div class="metric">
+            <div class="num">74.2%</div>
+            <div class="lbl">CONVERSIONS CAPTURED CALLING ONLY TOP 30%</div>
+          </div>
+          <div class="metric">
+            <div class="num">70%</div>
+            <div class="lbl">FEWER CALLS REQUIRED</div>
+          </div>
+          <div class="metric">
+            <div class="num">737%</div>
+            <div class="lbl">ESTIMATED ROI (vs. 238% calling everyone)</div>
+          </div>
+        </div>
+
+        <div class="chart-strip">
+          <div>
+            <img src="assets/11_cumulative_gains_chart.png" alt="Cumulative gains chart showing model targeting vs random targeting">
+            <p class="chart-cap">Model vs. random targeting — the core proof</p>
+          </div>
+          <div>
+            <img src="assets/02_conversion_by_job.png" alt="Conversion rate by job type bar chart">
+            <p class="chart-cap">Students &amp; retirees convert 3–4× better</p>
+          </div>
+          <div>
+            <img src="assets/03_conversion_by_month.png" alt="Conversion rate by month line chart">
+            <p class="chart-cap">May: high volume, lowest conversion</p>
+          </div>
+        </div>
+
+        <p>
+          <strong>Pipeline:</strong> SQL exploration → Python cleaning (removed a data-leakage
+          column, handled placeholder values) → EDA → feature engineering (encoding,
+          multicollinearity checks, stratified split) → Logistic Regression &amp; Random Forest,
+          validated with cross-validation → business impact simulation.
+        </p>
+
+        <div class="stack-row">
+          <span class="tag">Random Forest (AUC 0.81)</span>
+          <span class="tag">Stratified 5-fold CV</span>
+          <span class="tag">Cumulative gains analysis</span>
+        </div>
+
+        <div class="project-links">
+          <a href="[YOUR_GITHUB_REPO_LINK]">View full code on GitHub →</a>
+          <a href="[YOUR_WRITEUP_LINK]">Read the full write-up →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="divider">
+      <svg width="26" height="14" viewBox="0 0 26 14"><path d="M1,13 C8,3 14,3 25,1" fill="none" stroke="#E3B23C" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="label">More Projects</span>
+      <span class="rule"></span>
+    </div>
+    <div class="grid-3">
+      <div class="mini-card">
+        <div>
+          <h4>[Next project title]</h4>
+          <p>[One-line description of what it answers and the tools used.]</p>
+        </div>
+        <div class="soon">IN PROGRESS</div>
+      </div>
+      <div class="mini-card">
+        <div>
+          <h4>[Next project title]</h4>
+          <p>[One-line description of what it answers and the tools used.]</p>
+        </div>
+        <div class="soon">PLANNED</div>
+      </div>
+      <div class="mini-card">
+        <div>
+          <h4>[Next project title]</h4>
+          <p>[One-line description of what it answers and the tools used.]</p>
+        </div>
+        <div class="soon">PLANNED</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap contact-box">
+    <h2>Let's talk data.</h2>
+    <p style="max-width:480px; margin:14px auto 0; color:#2b333c;">
+      Open to Marketing Analyst / Data Analyst roles. Reach out — happy to walk through
+      any project in more depth.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:[your.email@example.com]">[your.email@example.com]</a>
+      <a href="[YOUR_LINKEDIN_LINK]">LinkedIn</a>
+      <a href="[YOUR_GITHUB_LINK]">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> [YOUR NAME] — built with HTML/CSS, hosted on GitHub Pages
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
